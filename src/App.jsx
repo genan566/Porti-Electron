@@ -222,18 +222,18 @@ const App = () => {
     customIA()
   }, [customIA])
 
-  // React.useEffect(() => {
-  //   customIAProgramsGens()
-  // }, [customIAProgramsGens])
-
-  // React.useEffect(() => {
-  //   console.log("stateProgramsDays", stateProgramsDays)
-  //   console.log("stateRetreatingProgramsDays", stateRetreatingProgramsDays)
-  // }, [stateRetreatingProgramsDays])
+  React.useEffect(() => {
+    customIAProgramsGens()
+  }, [customIAProgramsGens])
 
   React.useEffect(() => {
     console.log("stateProgramsDays", stateProgramsDays)
-  }, [stateProgramsDays])
+    console.log("stateRetreatingProgramsDays", stateRetreatingProgramsDays)
+  }, [stateRetreatingProgramsDays])
+
+  // React.useEffect(() => {
+  //   console.log("stateProgramsDays", stateProgramsDays)
+  // }, [stateProgramsDays])
 
   const handleChangeInputOperator = event => {
     setInputOperator(event.target.value);
