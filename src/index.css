@@ -356,7 +356,7 @@ img {
     align-items: center;
     justify-content: center;
     border-radius: 5rem;
-    padding: .4rem;
+    padding: .25rem;
     border:1px solid rgba(10,10,10,.1);
     cursor: pointer;
     transition: all .3s ease-in-out;
@@ -378,7 +378,7 @@ img {
     align-items: center;
     justify-content: center;
     border-radius: 5rem;
-    padding: .4rem;
+    padding: .25rem;
     border:1px solid rgba(10,10,10,.1);
     cursor: pointer;
     transition: all .3s ease-in-out;
@@ -400,7 +400,7 @@ img {
     align-items: center;
     justify-content: center;
     border-radius: 5rem;
-    padding: .4rem;
+    padding: .25rem;
     border:1px solid rgba(10,10,10,.1);
     cursor: pointer;
     transition: all .3s ease-in-out;
@@ -428,4 +428,77 @@ img {
 
 .mt1 {
     margin-top: 1rem;
+}
+
+.columNs {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+}
+.flex-start {
+    align-items:flex-start
+}
+
+.temponText {
+    font-size: .6rem !important;
+    color: white;
+    border-radius: .2rem;
+    padding: .025rem 1rem;
+    margin-top: .5rem;
+    background-color: rgba(0, 0, 255, 0.644);
+}
+
+span.important {
+    font-size: 1rem;
+    font-weight: 700;
+    padding: .5rem 0;
+    text-decoration: underline;
+}
+
+.de {
+    font-size: .7rem !important;
+    color: rgb(168, 168, 168);
+}
+
+.cCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.imgEx {
+    width: 200px;
+    height: 200px;
+    border-radius: .25rem !important;
+    overflow: hidden;
+    margin-top: 1rem;
+    box-shadow: 0 0 .5rem rgba(82, 81, 81, 0.397);
+}
+
+.imgEx img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+
+.tText {
+    font-size: .65rem !important;
+    line-height: 1.5rem;
+}
+
+
+
+.genProgC h2 {
+    
+    font-size: .85rem;
+    padding-bottom:.2rem;
+    /* text-align: center; */
+    font-weight: 600;
+    border-bottom: 1px solid rgb(231, 231, 231);
+    margin-bottom: 1rem;
 }

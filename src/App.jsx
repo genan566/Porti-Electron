@@ -15,6 +15,8 @@ import { AiFillBehanceCircle, AiOutlinePlus } from "react-icons/ai";
 import { IoIosArrowUp, IoIosArrowDown, IoIosAnalytics, IoIosApps, IoIosArrowBack, IoIosSearch, IoIosArrowForward } from "react-icons/io";
 import * as IO5Icon from "react-icons/io5";
 import User from "./assets/4.jpg"
+import Cleared from "./assets/undrawNotFound.png"
+import Blanks from "./assets/undrawBlanks.png"
 const App = () => {
 
   const [stateOperateurs, setStateOperateurs] = React.useState([
@@ -49,6 +51,7 @@ const App = () => {
   ])
   const [selectedTab, setSelectedTab] = React.useState(listTabs[0].name)
   const [stateOperatorsSentByUsers, setStateOperatorsSentByUsers] = React.useState([])
+  const [daysGen, setDaysGen] = React.useState(["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"])
   const [stateOperationsSentByUsers, setStateOperationsSentByUsers] = React.useState([])
   const [days, setDays] = React.useState(0)
   const [inputOperator, setInputOperator] = React.useState("")
@@ -916,7 +919,7 @@ const App = () => {
                                     }}
                                     className="ico-AE">
                                     <IO5Icon.IoBrush
-                                      size={15}
+                                      size={12.5}
                                       color='white' />
                                   </div>
                                   <div
@@ -925,7 +928,7 @@ const App = () => {
                                     }}
                                     className="ico-S">
                                     <IO5Icon.IoClose
-                                      size={15}
+                                      size={12.5}
                                       color='white' />
                                   </div>
 
@@ -945,7 +948,6 @@ const App = () => {
                         )
                       }
                     </div>
-
 
                     <div className="assignee-operators">
                       <div className="rows space-Hori assignee-operators-tAdd ">
@@ -1005,7 +1007,7 @@ const App = () => {
                                     }}
                                     className="ico-AE">
                                     <IO5Icon.IoBrush
-                                      size={15}
+                                      size={12.5}
                                       color='white' />
                                   </div>
                                   <div
@@ -1015,7 +1017,7 @@ const App = () => {
                                     }}
                                     className="ico-S">
                                     <IO5Icon.IoClose
-                                      size={15}
+                                      size={12.5}
                                       color='white' />
                                   </div>
                                 </div>
@@ -1034,38 +1036,133 @@ const App = () => {
                       }
                     </div>
 
-
-                    {
-                      ((stateOperatorsSentByUsers.length > 0) &&
-                        (stateOperationsSentByUsers.length > 0)) && (
-                        <>
-                          <div
-                            onClick={() => {
-                              // setStateOperations([])
-                              // setStateProgramsDays([])
-                              // let sendingParsedOperations = JSON.parse(JSON.stringify(stateOperationsSentByUsers))
-                              // let sendingParsedOperators = stateOperatorsSentByUsers
+                  </div>
+                  {
+                    ((stateOperatorsSentByUsers.length > 0) &&
+                      (stateOperationsSentByUsers.length > 0)) && (
+                      <div className="padY15X2"
+                        style={{ display: "inline-block" }}>
+                        <div
+                          onClick={() => {
+                            if (stateRetreatingProgramsDays.length > 0) {
+                              setDays(0)
+                              setStateProgramsDays([])
+                              // setStateOperateurs([...stateOperatorsSentByUsers])
+                              // setStateOperations([...stateOperationsSentByUsers])
+                              setStateRetreatingProgramsDays([])
+                            } else {
                               setDays(0)
                               setStateProgramsDays([])
                               setStateOperateurs([...stateOperatorsSentByUsers])
                               setStateOperations([...stateOperationsSentByUsers])
-                              // setStateOperateurs(stateOperatorsSentByUsers)
-                              // console.log("ise", [...stateOperatorsSentByUsers])
-                              // console.log("stateOperationsSentByUsers", ...stateOperationsSentByUsers)
-                            }}
-                            className="add-operator mt1 rows gap5">
-                            <p>Créer le programme</p>
-                            <IO5Icon.IoCalendarSharp
-                              size={15}
-                              className="change"
-                            />
-                          </div>
-                        </>
-                      )
-                    }
+                            }
+                          }}
+                          className="add-operator mt1 rows gap5">
+                          <p>{stateRetreatingProgramsDays.length > 0 ? "Nettoyer le programme" : "Créer le programme"}</p>
+                          <IO5Icon.IoCalendarSharp
+                            size={15}
+                            className="change"
+                          />
+                        </div>
+                      </div>
+                    )
+                  }
+                  {
+                    stateRetreatingProgramsDays.length > 0 && (
 
-                  </div>
+                      <div className="padY15X2 genProgC">
+
+                        <h2>Les programmes générés</h2>
+                        <>
+                          {
+                            stateRetreatingProgramsDays.map(item => {
+                              return (
+                                <>
+                                  <div className="genProgramms">
+                                    <h2>Les programmes du <span className="important">{daysGen[item.day]}</span></h2>
+
+                                    <div className="genProgramms-programs">
+                                      {
+                                        item?.programsGen.map((prog) => {
+                                          // console.log("g", prog)
+                                          return (
+                                            <>
+                                              <div className="genProgramms-programs-item rows space-Hori">
+                                                <div className="columNs flex-start">
+                                                  <p className="de">Programme:</p>
+                                                  <p>{prog?.evaluate}</p>
+                                                </div>
+                                                <div className="columNs">
+                                                  <div className="personnal-l">
+                                                    <img src={User} />
+                                                  </div>
+                                                  <p className="temponText">{prog?.name}</p>
+                                                </div>
+                                              </div>
+                                            </>
+                                          )
+                                        })
+                                      }
+                                    </div>
+                                  </div>
+                                </>
+                              )
+                            })
+                          }
+                        </>
+
+                      </div>
+                    )
+                  }
+
+                  {
+                    stateRetreatingProgramsDays.length === 0 && (
+                      <div className="padY15X2 cCenter">
+                        <p className="tText">Auncun programme n'est ajouté</p>
+                        <p className="tText">Veuillez bien ajouter un programme pour le voir apparaître ici</p>
+
+                        <div
+                          className="imgEx">
+                          <img
+                            src={Cleared}
+                          />
+                        </div>
+                      </div>
+                    )
+                  }
+
                 </>
+              )
+            }
+            {
+              selectedTab === listTabs[2].name && (
+                <div className="padY15X2 cCenter">
+                  <p className="tText">Oupps contenu non disponible pour le moment</p>
+                  <p className="tText">Veuillez bien patienter pendant que nous travaillons sur ce contenu</p>
+
+                  <div
+                    className="imgEx">
+                    <img
+                      src={Blanks}
+                    />
+                  </div>
+                </div>
+              )
+            }
+
+            {
+              selectedTab === listTabs[3].name && (
+                <div className="padY15X2 cCenter">
+                  <p className="tText">Oupps contenu non disponible pour le moment</p>
+                  <p className="tText">Veuillez bien patienter pendant que nous travaillons sur ce contenu</p>
+
+                  <div
+                    className="imgEx">
+                    <img
+                      src={Blanks}
+                    />
+                  </div>
+                </div>
               )
             }
           </div>
